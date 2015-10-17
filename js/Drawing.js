@@ -3,8 +3,8 @@ Drawing Library
 Copyright (c) 2014-2015 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 2.0
-Update: 2014-07-02
+Version: 0.2.1
+Update: 2015-10-16
 
 Description:
     Draw shape in selected HTML container
