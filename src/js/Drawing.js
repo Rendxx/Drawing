@@ -3,7 +3,7 @@ Drawing Library
 Copyright (c) 2014-2015 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 0.2.2
+Version: 0.2.3
 Update: 2015-10-18
 
 Description:
@@ -17,7 +17,7 @@ Dependency:
     Transform2D
 
 API-Drawing Library:
-    $$.drawing.create(key, opts)
+    $$.drawing.create(shapeType, opts)
         - (object) Create a specific shape object with given options
     
 API-Base:
@@ -36,8 +36,8 @@ API-Base:
     [Shape].rotateTo(deg)
         - rotate to given deg clockwise from origin
     
-    [Shape].scale(rate)
-        - scale to given rate
+    [Shape].scaleTo(ratio)
+        - scale to given ratio
     
     [Shape].setOpts()
         - reset options and re-render the shape
@@ -49,7 +49,7 @@ API-Line:
     [Shape].lineTo(left, top)
         - move the end of the line to specific position
 
-    [Shape].scale()
+    [Shape].scaleTo()
         - scale is disabled in line    
 
     [Shape].ptrStart
@@ -108,11 +108,11 @@ API-Line:
             });
         };
 
-        this.scale = function (rate) {
+        this.scaleTo = function (ratio) {
             if (this.ele == null) return;
             this.inner.transform2D({
-                scaleX: rate,
-                scaleY: rate
+                scaleX: ratio,
+                scaleY: ratio
             });
         };
 
@@ -222,7 +222,7 @@ API-Line:
             //that.inner.css("top", -offset - that.options.pointer.start.radius + "px");
         };
 
-        this.scale = function (rate) {
+        this.scaleTo = function (rate) {
             return;
         };
 
@@ -351,11 +351,11 @@ API-Line:
 
     // Drawing init
     var _initDrawing = function () {
-        this.create = function (key, opts) {
-            if (!(key in _Shape) || key == "Base") return null;
-            _Shape[key].prototype = new _Shape.Base();
-            _Shape[key].base = _Shape[key].prototype;
-            return new _Shape[key](opts);
+        this.create = function (shapeType, opts) {
+            if (!(shapeType in _Shape) || shapeType == "Base") return null;
+            _Shape[shapeType].prototype = new _Shape.Base();
+            _Shape[shapeType].base = _Shape[shapeType].prototype;
+            return new _Shape[shapeType](opts);
         };
         var _init = function () {
         }();
