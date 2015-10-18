@@ -2,7 +2,7 @@
 Draw shape in selected HTML container with CSS2.  
 For this version, line is the only available shape.     
 
-![preview](https://raw.githubusercontent.com/Rendxx/Dawing/master/preview.png "Preview")
+![preview](https://raw.githubusercontent.com/Rendxx/Drawing/master/preview.png "Preview")
 
 *Sample: [http://www.rendxx.com/Lib/Sample/2](http://www.rendxx.com/Lib/Sample/1 "Sample")*  
 *Download: [Drawing v0.2.1](https://github.com/Rendxx/Drawing/releases/tag/0.2.1 "Download")*
