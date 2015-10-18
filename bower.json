@@ -1,7 +1,8 @@
 {
   "name": "drawing",
-  "description": "",
+  "description": "Draw shape in selected HTML container",
   "main": [
+    "js/Drawing.js"
   ],
   "dependencies": {
     "jquery": "1.11.2",
@@ -11,8 +12,13 @@
     "globals"
   ],
   "keywords": [
+    "drawing",
+    "draw",
+    "line",
+    "css"
   ],
   "authors": [
+    "Dongxu Ren <rendxx@gmail.com> http://www.rendxx.com"
   ],
   "license": "MIT",
   "ignore": [
@@ -21,7 +27,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git://github.com/Rendxx/Drawing.git"
   },
   "private": false
 }
