@@ -3,8 +3,8 @@ Drawing Library
 Copyright (c) 2014-2015 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 0.2.1
-Update: 2015-10-16
+Version: 0.2.2
+Update: 2015-10-18
 
 Description:
     Draw shape in selected HTML container
@@ -158,7 +158,7 @@ API-Line:
         this.options = {
             "container": $("body"),
             "width": 1,
-            "z-index": 10,
+            "z-index": 1,
             background: {
                 color: "#000",
                 image: null
@@ -255,11 +255,12 @@ API-Line:
             if (max_w < opts.pointer.start.radius * 2) max_w = opts.pointer.start.radius * 2;
             if (max_w < opts.pointer.end.radius * 2) max_w = opts.pointer.end.radius * 2;
 
+            that.ele.css("z-index", opts["z-index"]);
+
             var cssListEle = {};
             cssListEle["width"] = max_w + "px";
             cssListEle["top"] = "0px";
             cssListEle["left"] = -max_w / 2 + "px";
-            cssListEle["z-index"] = opts["z-index"];
             that.inner.css(cssListEle);
 
             // body css

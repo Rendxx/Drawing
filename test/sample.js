@@ -57,6 +57,7 @@
         createLine($(".start-1"), $(".end-1"), {
             "container": $(".wrap"),
             "width": 4,
+            "z-index": 30,
             "background": {
                 color: "",
                 image: "line-bg.png"
@@ -77,6 +78,7 @@
         createLine($(".start-2"), $(".end-2"), {
             "container": $(".wrap"),
             "width": 8,
+            "z-index": 20,
             "background": {
                 color: "#e33"
             }
@@ -85,6 +87,7 @@
         createLine($(".start-3"), $(".end-3"), {
             "container": $(".wrap"),
             "width": 10,
+            "z-index": 10,
             "background": {
                 color: "",
                 image: "line-bg2.gif"
