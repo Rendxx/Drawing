@@ -28,7 +28,7 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="API Document - Shpae.md" />
+    <Content Include="API Document - Shape.md" />
     <Content Include="API Document - Line.md" />
     <None Include="bower.json" />
     <None Include="bundle.json" />
