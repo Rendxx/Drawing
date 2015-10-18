@@ -39,7 +39,7 @@ API-Base:
     [Shape].scaleTo(ratio)
         - scale to given ratio
     
-    [Shape].setOpts()
+    [Shape].setOpts(opts)
         - reset options and re-render the shape
 
     [Shape].destroy()
