@@ -101,13 +101,13 @@ jQuery object: end point.
 #### LINE.options ```object```
 Line options.
 
-[show]: API%20Document%20-%20Shape.mg/#SHAPE.show
-[hide]: API%20Document%20-%20Shape.mg/#SHAPE.hide
-[move]: API%20Document%20-%20Shape.mg/#SHAPE.move
-[moveTo]: API%20Document%20-%20Shape.mg/#SHAPE.moveTo
-[rotate]: API%20Document%20-%20Shape.mg/#SHAPE.rotate
-[rotateTo]: API%20Document%20-%20Shape.mg/#SHAPE.rotateTo
-[setOpts]: API%20Document%20-%20Shape.mg/#SHAPE.setOpts
-[destroy]: API%20Document%20-%20Shape.mg/#SHAPE.destroy
+[show]: API%20Document%20-%20Shape.mg#shapeshow
+[hide]: API%20Document%20-%20Shape.mg#shapehide
+[move]: API%20Document%20-%20Shape.mg#shapemoveleft-top
+[moveTo]: API%20Document%20-%20Shape.mg#shapemovetoleft-top
+[rotate]: API%20Document%20-%20Shape.mg#shaperotatedeg
+[rotateTo]: API%20Document%20-%20Shape.mg#shaperotatetodeg
+[setOpts]: API%20Document%20-%20Shape.mg#shapesetoptsopts
+[destroy]: API%20Document%20-%20Shape.mg#shapedestroy
 
      
