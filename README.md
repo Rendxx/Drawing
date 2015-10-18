@@ -8,7 +8,8 @@ For this version, line is the only available shape.
 *Download: [Drawing v0.2.1](https://github.com/Rendxx/Drawing/releases/tag/0.2.1 "Download")*
 
 ## API
-[API Document](https://github.com/Rendxx/Drawing/blob/master/API%20Document.md)
+[API Document - Shape](https://github.com/Rendxx/Drawing/blob/master/API%20Document%20-%20Shape.md)
+[API Document - Line](https://github.com/Rendxx/Drawing/blob/master/API%20Document%20-%20Line.md)
 
 ## Dependency
 - [jQuery][]
