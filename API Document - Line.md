@@ -31,12 +31,12 @@ First argument MUST be "line" to indicate the shape created is a line.
       See *pointer data structure* below
 
       > **pointer data structure:**
-        - **image** ```string```  
-          Image of the pointer. Input should be the available path to access the image.
-        - **position** ```string```  
-          Used as background-position in CSS.
-        - **radiu**s ```string```  
-          Radius of the pointer.  
+      >  - **image** ```string```  
+      >    Image of the pointer. Input should be the available path to access the image.
+      >  - **position** ```string```  
+      >    Used as background-position in CSS.
+      >  - **radiu**s ```string```  
+      >    Radius of the pointer.  
 pointer size = radius * 2
 
 <h1></h1>
