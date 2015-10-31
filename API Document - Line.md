@@ -18,6 +18,9 @@ First argument MUST be "line" to indicate the shape created is a line.
   + **z-index** ```number```   
     Z-index of the line.
 
+  + **reduce** ```number```   
+    Reduce the length of line.
+
   + **background** ```object```  
     - **color** ```string```  
       Background color of line body. In CSS format.
@@ -35,7 +38,7 @@ First argument MUST be "line" to indicate the shape created is a line.
       >    Image of the pointer. Input should be the available path to access the image.
       >  - **position** ```string```  
       >    Used as background-position in CSS.
-      >  - **radius** ```string```  
+      >  - **radius** ```number```  
       >    Radius of the pointer.  
 pointer size = radius * 2
 

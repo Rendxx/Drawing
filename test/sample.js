@@ -88,6 +88,7 @@
             "container": $(".wrap"),
             "width": 10,
             "z-index": 10,
+            "reduce": 15,
             "background": {
                 color: "",
                 image: "line-bg2.gif"

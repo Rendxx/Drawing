@@ -159,6 +159,7 @@ API-Line:
             "container": $("body"),
             "width": 1,
             "z-index": 1,
+            "reduce": 0,
             background: {
                 color: "#000",
                 image: null
@@ -190,7 +191,7 @@ API-Line:
             _l = endPoint.left - startPoint.left;
             _t = endPoint.top - startPoint.top;
             var deg = -Math.atan2(_l, _t) * 180 / Math.PI;
-            _buffer_h = Math.sqrt(_l * _l + _t * _t) + that.options.pointer.start.radius + that.options.pointer.end.radius;
+            _buffer_h = Math.sqrt(_l * _l + _t * _t) + that.options.pointer.start.radius + that.options.pointer.end.radius - that.options.reduce;
             that.ele.css("overflow","hidden");
             that.inner.height(_buffer_h);
             _html["body"].height(_buffer_h - that.options.pointer.start.radius * 2 - that.options.pointer.end.radius );
@@ -236,6 +237,7 @@ API-Line:
             if (opts["container"]) that.options["container"] = opts["container"];
             if (opts["width"]) that.options["width"] = opts["width"];
             if (opts["z-index"]) that.options["z-index"] = opts["z-index"];
+            if (opts["reduce"]) that.options["reduce"] = opts["reduce"];
 
             if (opts.background) {
                 for (var i in opts.background)
