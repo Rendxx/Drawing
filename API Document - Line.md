@@ -35,7 +35,7 @@ First argument MUST be "line" to indicate the shape created is a line.
       >    Image of the pointer. Input should be the available path to access the image.
       >  - **position** ```string```  
       >    Used as background-position in CSS.
-      >  - **radiu**s ```string```  
+      >  - **radius** ```string```  
       >    Radius of the pointer.  
 pointer size = radius * 2
 
