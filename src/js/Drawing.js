@@ -3,14 +3,14 @@ Drawing Library
 Copyright (c) 2014-2015 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 0.2.3
-Update: 2015-10-18
+Version: 0.3.0
+Update: 2016-04-22
 
 Description:
     Draw shape in selected HTML container
     
 Compatibility:
-    Chrome; Fire Fox; Safari; Edge; IE 9-11; IE 7,8;
+    Chrome; Fire Fox; Safari; Edge; IE 9-11;
  
 Dependency:
     jQuery
@@ -142,6 +142,8 @@ API-Line:
         var _buffer_h = 0;      // buffer of line length, in order to fix old ie issue
         var _t = 0;             // top difference
         var _l = 0;             // left difference
+        var bodyLengthAdjust = 0;       // adjust length of body
+        var bodyOffset = 0;             // offset the body from start to end
 
         var _html = {
             "body": null,
@@ -157,25 +159,7 @@ API-Line:
         this.ptrEnd = null;
         this.options = {
             "container": $("body"),
-            "width": 1,
-            "z-index": 1,
-            "reduce": 0,
-            background: {
-                color: "#000",
-                image: null
-            },
-            pointer: {
-                start: {
-                    image: null,
-                    position: null,
-                    radius: 0
-                },
-                end: {
-                    image: null,
-                    position: null,
-                    radius: 0
-                }
-            }
+            "z-index": 1
         };
 
         this.lineTo = function (left, top) {
@@ -191,10 +175,10 @@ API-Line:
             _l = endPoint.left - startPoint.left;
             _t = endPoint.top - startPoint.top;
             var deg = -Math.atan2(_l, _t) * 180 / Math.PI;
-            _buffer_h = Math.sqrt(_l * _l + _t * _t) + that.options.pointer.start.radius + that.options.pointer.end.radius - that.options.reduce;
+            _buffer_h = Math.sqrt(_l * _l + _t * _t);
             that.ele.css("overflow","hidden");
             that.inner.height(_buffer_h);
-            _html["body"].height(_buffer_h - that.options.pointer.start.radius * 2 - that.options.pointer.end.radius );
+            _html["body"].height(_buffer_h + bodyLengthAdjust);
 
             this.rotateTo(deg);
             that.ele.css("overflow", "visible");
@@ -203,24 +187,20 @@ API-Line:
         this.rotate = function (deg) {
             if (this.ele == null) return;
             var r = that.inner.rotation();
-            //var offset = _buffer_h / 2 - that.options.pointer.start.radius;
             that.inner.transform2D({
                 rotate: r + deg,
-                translateX: -(_buffer_h / 2 - that.options.pointer.start.radius) * Math.sin(deg / 180 * Math.PI),
-                translateY: (_buffer_h / 2 - that.options.pointer.start.radius) * Math.cos(deg / 180 * Math.PI) - _buffer_h / 2
+                translateX: -(_buffer_h / 2) * Math.sin(deg / 180 * Math.PI),
+                translateY: (_buffer_h / 2) * Math.cos(deg / 180 * Math.PI) - _buffer_h / 2
             });
-            //that.inner.css("top", -offset - that.options.pointer.start.radius + "px");
         };
 
         this.rotateTo = function (deg) {
             if (this.ele == null) return;
-            //var offset = _buffer_h / 2 - that.options.pointer.start.radius;
             that.inner.transform2D({
                 rotate: deg,
-                translateX: -(_buffer_h / 2 - that.options.pointer.start.radius) * Math.sin(deg / 180 * Math.PI),
-                translateY: (_buffer_h / 2 - that.options.pointer.start.radius) * Math.cos(deg / 180 * Math.PI) - _buffer_h / 2
+                translateX: -(_buffer_h / 2) * Math.sin(deg / 180 * Math.PI),
+                translateY: (_buffer_h / 2) * Math.cos(deg / 180 * Math.PI) - _buffer_h / 2
             });
-            //that.inner.css("top", -offset - that.options.pointer.start.radius + "px");
         };
 
         this.scaleTo = function (rate) {
@@ -235,61 +215,61 @@ API-Line:
         var _setOpts = function (opts) {
             if (opts == null) return;
             if (opts["container"]) that.options["container"] = opts["container"];
-            if (opts["width"]) that.options["width"] = opts["width"];
             if (opts["z-index"]) that.options["z-index"] = opts["z-index"];
-            if (opts["reduce"]) that.options["reduce"] = opts["reduce"];
-
-            if (opts.background) {
-                for (var i in opts.background)
-                    that.options.background[i] = opts.background[i];
-            }
-            if (opts.pointer) {
-                for (var i in opts.pointer)
-                    that.options.pointer[i] = opts.pointer[i];
-            }
+            if (opts["adjust"]) that.options["adjust"] = opts["adjust"];
+            if (opts["offset"]) that.options["offset"] = opts["offset"];
+            if (opts["css"]) that.options["css"] = opts["css"];
         };
 
         var _render = function () {
             var opts = that.options;
 
             // overall css
-            var max_w = opts["width"];
-            if (max_w < opts.pointer.start.radius * 2) max_w = opts.pointer.start.radius * 2;
-            if (max_w < opts.pointer.end.radius * 2) max_w = opts.pointer.end.radius * 2;
-
             that.ele.css("z-index", opts["z-index"]);
-
-            var cssListEle = {};
-            cssListEle["width"] = max_w + "px";
-            cssListEle["top"] = "0px";
-            cssListEle["left"] = -max_w / 2 + "px";
-            that.inner.css(cssListEle);
 
             // body css
             var cssListBody = {};
-            cssListBody["width"] = opts["width"] + "px";
-            cssListBody["margin-top"] = "0px";
-            cssListBody["margin-left"] = (max_w - opts["width"])/2 + "px";
-            cssListBody["background-color"] = opts.background.color;
-            cssListBody["background-image"] = (opts.background.image == null) ? null : ("url('" + opts.background.image + "')");
+            if (opts.hasOwnProperty("css") && opts.css.hasOwnProperty("body")) {
+                for (var i in opts.css.body) {
+                    cssListBody[i] = opts.css.body[i];
+                }
+            }
             _html["body"].css(cssListBody);
-
+            var leftOffset = parseInt(_html["body"].css('padding-left')) + parseInt(_html["body"].css('border-left-width')) + _html["body"].width() / 2;
+            _html["body"].css('margin-left', -leftOffset + "px");
+            
             // start pointer css
             var cssListStart = {};
-            cssListStart["background-image"] = (opts.pointer.start.image == null) ? null : ("url('" + opts.pointer.start.image + "')");
-            cssListStart["background-position"] = (opts.pointer.start.position == null) ? null : opts.pointer.start.position;
-            cssListStart["height"] = cssListStart["width"] = opts.pointer.start.radius * 2 + "px";
-            cssListStart["margin-left"] = (max_w / 2 - opts.pointer.start.radius) + "px";
+            if (opts.hasOwnProperty("css") && opts.css.hasOwnProperty("start")) {
+                for (var i in opts.css.start) {
+                    cssListStart[i] = opts.css.start[i];
+                }
+            }
             _html["start"].css(cssListStart);
+            var leftOffset = parseInt(_html["start"].css('padding-left')) + parseInt(_html["start"].css('border-left-width')) + _html["start"].width() / 2;
+            _html["start"].css('left', -leftOffset + "px");
 
             // end pointer css
             var cssListEnd = {};
-            cssListEnd["background-image"] = (opts.pointer.end.image == null) ? null : ("url('" + opts.pointer.end.image + "')");
-            cssListEnd["background-position"] = (opts.pointer.end.position == null) ? null : opts.pointer.end.position;
-            cssListEnd["height"] = cssListEnd["width"] = opts.pointer.end.radius * 2 + "px";
-            cssListEnd["margin-left"] = (max_w / 2 - opts.pointer.end.radius) + "px";
-            cssListEnd["margin-top"] = - opts.pointer.end.radius + "px";
+            if (opts.hasOwnProperty("css") && opts.css.hasOwnProperty("end")) {
+                for (var i in opts.css.end) {
+                    cssListEnd[i] = opts.css.end[i];
+                }
+            }
             _html["end"].css(cssListEnd);
+            var leftOffset = parseInt(_html["end"].css('padding-left')) + parseInt(_html["end"].css('border-left-width')) + _html["end"].width() / 2;
+            _html["end"].css('margin-left', -leftOffset + "px");
+
+
+            var _topOffset = -(parseInt(_html["start"].css('padding-top')) + parseInt(_html["start"].css('border-top-width')) + _html["start"].height() / 2);
+            _html["start"].css('top', _topOffset + "px");
+
+            var _bottomOffset = -(parseInt(_html["end"].css('padding-bottom')) + parseInt(_html["end"].css('border-bottom-width')) + _html["end"].height() / 2);
+            _html["end"].css('bottom', _bottomOffset + "px");
+            
+            if (opts.hasOwnProperty("adjust") && opts.adjust !== null) bodyLengthAdjust = opts.adjust;
+            if (opts.hasOwnProperty("offset") && opts.adjust !== null) bodyOffset = opts.offset;
+            _html["body"].css('margin-top', bodyOffset + "px");
         };
 
         var _buildEle = function () {
@@ -310,7 +290,8 @@ API-Line:
                 "top": "0px",
                 "left": "0px",
                 "width": "1px",
-                "height": "1px"
+                "height": "1px",
+                "overflow": "visible"
             });
             that.inner.css({
                 "position": "absolute",
@@ -318,9 +299,14 @@ API-Line:
                 "padding": "0px",
                 "border": "0px",
                 "top": "0px",
-                "left": "0px"
+                "left": "0px",
+                "width":"0px",
+                "overflow": "visible"
             });
             _html["body"].css({
+                "position": "absolute",
+                "top": "0px",
+                "left": "0px",
                 "z-index": "1",
                 "width": "0px",
                 "height": "100%",
@@ -328,12 +314,18 @@ API-Line:
                 "background-position":"center center"
             });
             _html["start"].css({
+                "position": "absolute",
+                "top": "0px",
+                "left": "0px",
                 "z-index": "3",
                 "width": "0px",
                 "height": "0px",
                 "margin": "0px"
             });
             _html["end"].css({
+                "position": "absolute",
+                "bottom": "0px",
+                "left": "0px",
                 "z-index": "2",
                 "width": "0px",
                 "height": "0px",
