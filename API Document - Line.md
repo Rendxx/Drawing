@@ -12,35 +12,25 @@ First argument MUST be "line" to indicate the shape created is a line.
   + **container** ```jQuery object```  
     The jQuery object in which you want to draw the line.
 
-  + **width** ```number```  
-    Width of the line body.
-
   + **z-index** ```number```   
     Z-index of the line.
 
-  + **reduce** ```number```   
-    Reduce the length of line.
+  + **adjust** ```number```   
+    Adjust the length of line body (px).
 
-  + **background** ```object```  
-    - **color** ```string```  
-      Background color of line body. In CSS format.
-    - **image** ```string```  
-      Background image of line body. Input should be the available path to access the image.
+  + **offset** ```number```  
+    Offset of line body from start of the line (px).
 
-  + **pointer** ```object```  
+  + **css** ```object```  
+    - **body** ```object```  
+      Css of line body  
+
     - **start** ```object```  
-      See *pointer data structure* below
-    - **end** ```object```  
-      See *pointer data structure* below
+      Css of line start point
 
-      > **pointer data structure:**
-      >  - **image** ```string```  
-      >    Image of the pointer. Input should be the available path to access the image.
-      >  - **position** ```string```  
-      >    Used as background-position in CSS.
-      >  - **radius** ```number```  
-      >    Radius of the pointer.  
-pointer size = radius * 2
+    - **end** ```object```  
+      Css of line endpoint
+
 
 <h1></h1>
 
