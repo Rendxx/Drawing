@@ -17,7 +17,9 @@
     <Content Include="gulpfile.js" />
     <Content Include="js\Drawing.js" />
     <Content Include="js\Drawing.min.js" />
+    <Content Include="src\js\Drawing.Free.js" />
     <Content Include="src\js\Drawing.js" />
+    <Content Include="src\js\Drawing.Line.js" />
     <Content Include="test\line-bg.png" />
     <Content Include="test\line-bg2.gif" />
     <Content Include="test\line-icon.png" />
@@ -36,6 +38,7 @@
     <Content Include="README.md" />
     <Content Include="js\Drawing.js.map" />
     <Content Include="js\Drawing.min.js.map" />
+    <Content Include="src\js\Drawing.Basic.js" />
     <None Include="test\sample.less" />
     <None Include="package.json" />
   </ItemGroup>
