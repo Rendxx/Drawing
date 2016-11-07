@@ -20,8 +20,8 @@ window.$$.draw = window.$$.draw || {};
 	};
 
 
-	Basic.prototype.create = function () {
-		// (re)create the element
+	Basic.prototype.clear = function () {
+		// (re)clear the canvas
 	};
 
 	Basic.prototype.destroy = function () {
