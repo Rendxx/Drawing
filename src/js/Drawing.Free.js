@@ -39,6 +39,10 @@ window.$$.draw = window.$$.draw || {};
     FreeDraw.prototype._setupBinding = function () {
         var that = this;
 
+        var getOffset = function (dom) {
+
+        };
+
         var _getMousePos = function (e) {
             var pos;
             if (e.pageX == undefined) {
@@ -49,6 +53,9 @@ window.$$.draw = window.$$.draw || {};
             var viewportOffset = that._canvas.getBoundingClientRect();
             pos[1] -= viewportOffset.top;
             pos[0] -= viewportOffset.left
+
+            //http://www.cnblogs.com/zhiyishou/p/4214285.html
+            e.currentTarget
             return pos;
         };
         
