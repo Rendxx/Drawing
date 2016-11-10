@@ -31,7 +31,7 @@
       "#test#/sample": [ "#test#/sample.less" ]
     },
     "js": {
-      "#dest#/Drawing": [ "#src#/Drawing.Basic.js", "#src#/Drawing.Free.js" ]
+      "#dest#/Drawing": [ "#src#/Func.js",  "#src#/Drawing.Basic.js", "#src#/Drawing.Free.js" ]
     }
   }
 }

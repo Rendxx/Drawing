@@ -20,6 +20,7 @@
     <Content Include="src\js\Drawing.Free.js" />
     <Content Include="src\js\Drawing.js" />
     <Content Include="src\js\Drawing.Line.js" />
+    <Content Include="src\js\Func.js" />
     <Content Include="test\line-bg.png" />
     <Content Include="test\line-bg2.gif" />
     <Content Include="test\line-icon.png" />
