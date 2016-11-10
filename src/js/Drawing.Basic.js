@@ -9,6 +9,8 @@ window.$$.draw = window.$$.draw || {};
 		this.para = para;
 		this._canvas = document.createElement('canvas');
 		this._ctx = this._canvas.getContext('2d');
+		this.container.appendChild(this._canvas);
+		this.resize();
 	};
 	Basic.prototype = Object.create(null);
 	Basic.prototype.constructor = Basic;
@@ -40,6 +42,12 @@ window.$$.draw = window.$$.draw || {};
 	    // destroy the element and release all memory
 	    this._canvas = null;
 	    this._ctx = null;
+	};
+
+	Basic.prototype.resize = function () {
+	    // resize the canvas
+	    this._canvas.width = this.container.offsetWidth;
+	    this._canvas.height = this.container.offsetHeight;
 	};
 
 	DRAW.Basic = Basic;
