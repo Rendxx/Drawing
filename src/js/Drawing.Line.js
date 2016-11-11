@@ -1,5 +1,5 @@
 ﻿window.$$ = window.$$ || {};
-window.$$.draw = window.$$.draw || {};
+window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
     "use strict";
@@ -26,28 +26,37 @@ window.$$.draw = window.$$.draw || {};
         this.end = end;
 
         var para = para || {};
-        var style = para.style || para.color || '#000000';
+        for (var i in para) this._ctx[i] = para[i];
         var image = para.image || null;
-        var thickness = para.thickness || 1;
 
+        if (image == null) {
+            this._ctx.beginPath();
+            this._ctx.moveTo(start[0], start[1]);
+            this._ctx.lineTo(end[0], end[1]);
+            this._ctx.stroke();
+            return;
+        }
+        
+        var lineWidth = para.lineWidth || 1;
         var x = start[0] - end[0];
         var y = start[1] - end[1];
         var len = Math.sqrt(x*x+y*y);
-        var angle = Math.atan2(y, x);
+        var angle = Math.atan2(x, -y);
+        var offset = -image.width / 2;
+        var wid = Math.min(image.width, lineWidth);
+        var left = Math.max((image.width - lineWidth)/2, 0);
 
         this._ctx.translate(start[0], start[1]);
         this._ctx.rotate(angle);
-        this._ctx.drawImage(image, 0, 0, thickness, len);
-        if (image != null) {
-            var ptrn = this._ctx.createPattern(image, 'repeat');
-            this._ctx.fillStyle = ptrn;
-        } else {
-            this._ctx.fillStyle = style;
-        }
-        this._ctx.fillRect(0, 0, thickness, len);
+
+        this._ctx.translate(offset, 0);
+        this._ctx.fillStyle = this._ctx.createPattern(image, 'repeat-y');
+        this._ctx.fillRect(left, 0, wid, len);
+        this._ctx.translate(-offset, 0);
+
         this._ctx.rotate(-angle);
-        this._ctx.translate(-start[0], -start[1]);
+        this._ctx.translate(-start[0] , -start[1]);
     };
 
     DRAW.Line = Line;
-})(window.$$.draw);
+})(window.$$.Draw);

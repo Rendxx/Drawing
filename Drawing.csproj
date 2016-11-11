@@ -24,6 +24,7 @@
     <Content Include="test\line-bg.png" />
     <Content Include="test\line-bg2.gif" />
     <Content Include="test\line-icon.png" />
+    <Content Include="test\sample-line.html" />
     <Content Include="test\sample-free.html" />
     <Content Include="test\sample.html" />
     <Content Include="test\sample.js" />

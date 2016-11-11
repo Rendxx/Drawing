@@ -1,5 +1,5 @@
 ﻿window.$$ = window.$$ || {};
-window.$$.func = window.$$.func || {};
+window.$$.Func = window.$$.Func || {};
 
 (function (FUNC) {
     "use strict";
@@ -31,4 +31,4 @@ window.$$.func = window.$$.func || {};
         return pos;
     };
 
-})(window.$$.func);
+})(window.$$.Func);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <script type="text/javascript" src="../js/Drawing.js"></script>
-    <title>Drawing-Free</title>
+    <title>Drawing-Line</title>
     <style>
         body{
             margin:0;
@@ -28,18 +28,28 @@
     <div id="wrap"></div>
     <script>
         var container = document.getElementById('wrap');
-        var d = new $$.Draw.FreeDraw(container);
+        var d = new $$.Draw.Line(container);
+        var start = null;
+        var image = new Image();
+        image.src = 'line-bg.png';
         var startDraw = function (e) {
-            d.startDrawing({
-                strokeStyle: '#ff0000',
-                lineWidth: 4,
-                lineCap: 'round'
-            });
+            start = $$.Func.getMousePos(e, container);
         };
         var stopDrawing = function (e) {
-            d.stopDrawing();
+            start = null;
+        };
+        var drawing = function (e) {
+            if (start == null) return false;
+            var end = $$.Func.getMousePos(e, container);
+            d.draw(start, end,{
+                strokeStyle: '#ff0000',
+                lineWidth: 24,
+                lineCap: 'round',
+                image: image
+            });
         };
         this.container.addEventListener("mousedown", startDraw, false);
+        this.container.addEventListener("mousemove", drawing, false);
         this.container.addEventListener("mouseup", stopDrawing, false);
         this.container.addEventListener("mouseout", stopDrawing, false);
         document.addEventListener("mouseout", function (e) {

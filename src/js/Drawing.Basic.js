@@ -1,5 +1,5 @@
 ﻿window.$$ = window.$$ || {};
-window.$$.draw = window.$$.draw || {};
+window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
 	"use strict";
@@ -51,4 +51,4 @@ window.$$.draw = window.$$.draw || {};
 	};
 
 	DRAW.Basic = Basic;
-})(window.$$.draw);
+})(window.$$.Draw);
