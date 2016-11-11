@@ -3,23 +3,216 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <script type="text/javascript" src="../lib/jquery.js"></script>
-    <script type="text/javascript" src="../lib/Transform2D.js"></script>
     <script type="text/javascript" src="../js/Drawing.js"></script>
-    <script type="text/javascript" src="sample.js"></script>
-    <link type="text/css" rel="stylesheet" href="sample.css"/>
     <title>Drawing</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            border:0;
+            width:100%;
+            height:100%;
+            background-color:#ccc;
+        }
+        .btn-wrap{
+            border:0;
+            padding:0;
+            width:600px;
+            background-color:#fff;
+            margin:0 auto;
+            margin-top:40px;
+            padding:5px 0;
+        }
+        
+        .btn{
+            position:relative;
+            width:32px;
+            height:32px;
+            margin-top:9px;
+            cursor:pointer;
+            background-color:#5390c1;
+            border-radius:50%;
+            opacity:0.6;
+            border:4px solid #fff;
+        }
+
+        .btn:hover{
+            opacity:0.9;
+        }
+
+        .btn.selected{
+            border:4px solid #cadfef;
+            opacity:1;
+        }
+
+        .btn.btn-line{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAuklEQVRYhe2UUQ3DMAxEzyNQCBuDQiiEQpmGoBA2CGPQMQiEjsEgFMLtx5GiLlL7kdk/vs9IuXdx3QNCoVDIWdLChGQH4AHgokdvEbm18D4aYOKvRssAayXAeuRuq0/AqrnIrv+pRQAAr8rZs5H3vkimzfiTLqYJPC9gMgFu4H1eOLMXbwIs5r9cAb8rfPaADwr/mI+eZFcUz2AK1wCzwicP+KjwxQN+LkbfewTIbXf1gEfbRdtF2/1NX/34IeQzLXvdAAAAAElFTkSuQmCC");
+        }
+        .btn.btn-line2{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA30lEQVRYhe2V0Q3CMAxEz4j/skHZoCMwQkdgBMQEHSEdgQ2ACRihbNAROsLx40ioRFCkYPOR+4xa35N9ToCioqIiZ0mOIiQrAD2ArR7dReSYo/ZSgI6vai0BpgTAtOTfXCNgsrjIx/qrHAAALomzU6ba70WyTozgpsE0ARjUdDAxnJmHGDiStbX5zmXlngD2ah7MzV1FsiF58DKvSI7aetvQKUDnNndtfVw5m0tmBhAvnKwrt/7i2x7ARkSuOQH+W5r6s8tNpwDBM/Wtmo/mqdfWxze+MTVXgPjQdL/2egBZXvyF9Iw9RQAAAABJRU5ErkJggg==");
+        }
+        .btn.btn-free{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABNklEQVRYhe1WwZGCQBDsse6PRqAZaAaQgSFsCFcXwV0GZwaSgWZgCJgBGoFk0PdgqNoCjhpwBR/0h6qtYbqna2d2gBkzZsyYGBIiCckIwAHARo+uIvIVIrdVwDeb2Fv+NTmgyXYoK9y0hOwALGtnhYisLPm7iNck85bqTLBwfBhilgBSADcAVwBFS8wPgKR2lloEdIJkrMU89KL9F7clmXnFX7ri+wiIlJwkj08nHCjCBa9sgIi950ROcjuFiIjkyXPjdyo3nNeaOcl4ChGROlDBjS5Chbh3EPFpmRWvFlF1iOkB8rEIpKGofccDyaNWn41NHHvzf5zhpO3nXvLwGEj9KVjd+t6Xzkoas1yzLmwiC9nzovYlKNeqBM3FAigXkRTAWUTuocgBAC0VVvae1Pp1UMIa/gCoqLzhueH1FAAAAABJRU5ErkJggg==");
+        }
+        .btn.btn-undo{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAb0lEQVRYhe3V0QmAIBRG4XsnkDZoA0duhEZwhEZohNrg9JBPQUFgSvJ/73KPimgmIvInQABmYGo1fOG0NR0ORA3ve3gOSJRz+2r8IWA1s7HQfnZ3H16tAGI+evJVhEIxiugjIlUPuETU/QtERL50APlDFmnFe+/xAAAAAElFTkSuQmCC");
+        }
+        .btn.btn-redo{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAb0lEQVRYhe3SWw2AMBBE0V0FBAc4qGQkIKESkFAJ4ODywX7yCKFJk2aOgM5NWzMRkV4AM7AAQ6uAwmltEgEkYFNEPxHxq2vJdzv+EFDMbPpcfm1397HSWe+AIa6eeIqk8b7HIyA3G4+A0mxcROSPAyh0FknmGCGjAAAAAElFTkSuQmCC");
+        }
+        .btn.btn-clear{
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAl0lEQVRYhe2TwQmAMBAExQZSQkpIaZZgibZgB5YwPsxDQhIvmhPBG/AhRmdAdhgMwzC+DuA5WAAnOO/iWQDfI8ABmyQikW9dAuKHw1VERh66yCUR6vJaxGvySsR78kLEI/l4s2GNV+lej8w/F01USx4kE1WTn57pRkimphbRsnOVCGBqmVoSMfUI8MDcsvMY0fSOYRj/ZQdSdcACKds/XwAAAABJRU5ErkJggg==");
+        }
+        
+        .left{
+            float:left;
+            margin-left:16px;
+        }
+        .right{
+            float:right;
+            margin-right:16px;
+        }
+
+        .clear{
+            clear:both;
+            width:0;
+            height:0;
+        }
+
+        .container{
+            width:600px;
+            height:400px;
+            background-color:#fff;
+            margin:0 auto;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="wrap">
-        <div class="start-1 circle"></div>
-        <div class="start-2 circle"></div>
-        <div class="start-3 circle"></div>
-        <div class="start-4 circle"></div>
-        <div class="end-1 circle"></div>
-        <div class="end-2 circle"></div>
-        <div class="end-3 circle"></div>
-        <div class="end-4 circle"></div>
+    <div class="btn-wrap">
+        <div id="btn-line" class="btn btn-line left"></div>
+        <div id="btn-line2" class="btn btn-line2 left"></div>
+        <div id="btn-free" class="btn btn-free left"></div>
+        <div id="btn-clear" class="btn btn-clear right"></div>
+        <div id="btn-redo" class="btn btn-redo right"></div>
+        <div id="btn-undo" class="btn btn-undo right"></div>
+        <div class="clear"></div>
     </div>
+    <div id="container" class="container">
+        <canvas id="scene" width="600" height="400"></canvas>
+    </div>
+    <script>
+        var img_dash = new Image();
+        img_dash.src = 'line-bg.png';
+
+        var container = document.getElementById("container");
+        var scene = document.getElementById("scene");
+        var btn_line = document.getElementById("btn-line");
+        var btn_line2 = document.getElementById("btn-line2");
+        var btn_free = document.getElementById("btn-free");
+        var btn_clear = document.getElementById("btn-clear");
+        var btn_redo = document.getElementById("btn-redo");
+        var btn_undo = document.getElementById("btn-undo");
+
+        var _mouseout = null,
+            _mouseup = null,
+            _mousedown = null,
+            _mousemove = null;
+        var _drawing = null;
+        var drawingList = [];
+        var drawingListIdx = -1;
+        var ctx = scene.getContext("2d");
+
+        var clearBinding = function () {
+            if (_mouseout) container.removeEventListener('mouseout', _mouseout);
+            if (_mouseup) container.removeEventListener('mouseup', _mouseup);
+            if (_mousedown) container.removeEventListener('mousedown', _mousedown);
+            if (_mousemove) container.removeEventListener('mousemove', _mousemove);
+            if (_drawing) _drawing.destroy();
+        };
+        var setupBinding = function () {
+            if (_mouseout) container.addEventListener('mouseout', _mouseout, false);
+            if (_mouseup) container.addEventListener('mouseup', _mouseup, false);
+            if (_mousedown) container.addEventListener('mousedown', _mousedown, false);
+            if (_mousemove) container.addEventListener('mousemove', _mousemove, false);
+        };
+        var selectDrawing = function (btn) {
+            btn_line.className = btn_line.className.replace(/(?:^|\s)selected(?!\S)/g, '');
+            btn_line2.className = btn_line2.className.replace(/(?:^|\s)selected(?!\S)/g, '');
+            btn_free.className = btn_free.className.replace(/(?:^|\s)selected(?!\S)/g, '');
+            btn.className += " selected";
+        };
+
+        var render = function () {
+            ctx.clearRect(0, 0, scene.width, scene.height);
+            for (var i = 0; i <= drawingListIdx; i++) {
+                ctx.drawImage(drawingList[i], 0, 0);
+            }
+        };
+
+        var addBinding = {
+            "line": function () {
+                clearBinding();
+                _drawing = new $$.Draw.Line(container);
+                var start = null;
+                _mousedown = function (e) {
+                    start = $$.Func.getMousePos(e, container);
+                };
+                _mousemove = function (e) {
+                    if (start == null) return false;
+                    var end = $$.Func.getMousePos(e, container);
+                    _drawing.draw(start, end, {
+                        strokeStyle: '#ff0000',
+                        lineWidth: 24,
+                        lineCap: 'round'
+                    });
+                };
+                _mouseup = _mouseout = function (e) {
+                    start = null;
+                    var img = _drawing.getImage();
+                    drawingList.length = ++drawingListIdx;
+                    drawingList.push(img);
+                    _drawing.clear();
+                    render();
+                };
+                setupBinding();
+                selectDrawing(btn_line);
+            },
+
+            "line2": function () {
+                clearBinding();
+                _drawing = new $$.Draw.Line(container);
+                var start = null;
+                _mousedown = function (e) {
+                    start = $$.Func.getMousePos(e, container);
+                };
+                _mousemove = function (e) {
+                    if (start == null) return false;
+                    var end = $$.Func.getMousePos(e, container);
+                    _drawing.draw(start, end, {
+                        lineWidth: 10,
+                        image: img_dash
+                    });
+                };
+                _mouseup = _mouseout = function (e) {
+                    start = null;
+                    var img = _drawing.getImage();
+                    drawingList.length = ++drawingListIdx;
+                    drawingList.push(img);
+                    _drawing.clear();
+                    render();
+                };
+                setupBinding();
+                selectDrawing(btn_line2);
+            },
+            "free": function () {
+                clearBinding();
+            }
+        };
+
+        btn_line.addEventListener("click", function () { addBinding["line"](); }, false);
+        btn_line2.addEventListener("click", function () { addBinding["line2"](); }, false);
+        btn_free.addEventListener("click", function () { addBinding["free"](); }, false);
+    </script>
 </body>
 </html>

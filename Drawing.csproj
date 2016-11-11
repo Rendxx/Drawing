@@ -17,6 +17,12 @@
     <Content Include="gulpfile.js" />
     <Content Include="js\Drawing.js" />
     <Content Include="js\Drawing.min.js" />
+    <Content Include="src\design\btn0001.png" />
+    <Content Include="src\design\btn0002.png" />
+    <Content Include="src\design\btn0003.png" />
+    <Content Include="src\design\btn0004.png" />
+    <Content Include="src\design\btn0005.png" />
+    <Content Include="src\design\btn0006.png" />
     <Content Include="src\js\Drawing.Free.js" />
     <Content Include="src\js\Drawing.js" />
     <Content Include="src\js\Drawing.Line.js" />
@@ -24,10 +30,9 @@
     <Content Include="test\line-bg.png" />
     <Content Include="test\line-bg2.gif" />
     <Content Include="test\line-icon.png" />
-    <Content Include="test\sample-line.html" />
-    <Content Include="test\sample-free.html" />
+    <Content Include="test\test-line.html" />
+    <Content Include="test\test-free.html" />
     <Content Include="test\sample.html" />
-    <Content Include="test\sample.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lib\" />
@@ -42,8 +47,8 @@
     <Content Include="js\Drawing.js.map" />
     <Content Include="js\Drawing.min.js.map" />
     <Content Include="src\js\Drawing.Basic.js" />
-    <None Include="test\sample.less" />
     <None Include="package.json" />
+    <Content Include="src\design\btn.fla" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
