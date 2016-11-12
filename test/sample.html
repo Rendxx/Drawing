@@ -162,8 +162,8 @@
                     if (start == null) return false;
                     var end = $$.Func.getMousePos(e, container);
                     _drawing.draw(start, end, {
-                        strokeStyle: '#ff0000',
-                        lineWidth: 24,
+                        strokeStyle: '#ff6666',
+                        lineWidth: 4,
                         lineCap: 'round'
                     });
                 };
@@ -207,6 +207,22 @@
             },
             "free": function () {
                 clearBinding();
+                _drawing = new $$.Draw.FreeDraw(container);
+                var start = null;
+                _mousedown = function (e) {
+                    _drawing.startDrawing({
+                        strokeStyle: '#66ff66',
+                        lineWidth: 4,
+                        lineCap: 'round'
+                    });
+                };
+                _mousemove = function (e) {
+                };
+                _mouseup = _mouseout = function (e) {
+                    _drawing.stopDrawing();
+                };
+                setupBinding();
+                selectDrawing(btn_free);
             }
         };
 
