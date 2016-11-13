@@ -168,6 +168,7 @@
                     });
                 };
                 _mouseup = _mouseout = function (e) {
+                    if (start === null) return;
                     start = null;
                     var img = _drawing.getImage();
                     drawingList.length = ++drawingListIdx;
@@ -195,6 +196,7 @@
                     });
                 };
                 _mouseup = _mouseout = function (e) {
+                    if (start === null) return;
                     start = null;
                     var img = _drawing.getImage();
                     drawingList.length = ++drawingListIdx;
@@ -210,6 +212,7 @@
                 _drawing = new $$.Draw.FreeDraw(container);
                 var start = null;
                 _mousedown = function (e) {
+                    start = 1;
                     _drawing.startDrawing({
                         strokeStyle: '#66ff66',
                         lineWidth: 4,
@@ -219,7 +222,14 @@
                 _mousemove = function (e) {
                 };
                 _mouseup = _mouseout = function (e) {
+                    if (start === null) return;
+                    start = null;
                     _drawing.stopDrawing();
+                    var img = _drawing.getImage();
+                    drawingList.length = ++drawingListIdx;
+                    drawingList.push(img);
+                    _drawing.clear();
+                    render();
                 };
                 setupBinding();
                 selectDrawing(btn_free);
@@ -229,6 +239,19 @@
         btn_line.addEventListener("click", function () { addBinding["line"](); }, false);
         btn_line2.addEventListener("click", function () { addBinding["line2"](); }, false);
         btn_free.addEventListener("click", function () { addBinding["free"](); }, false);
+        btn_clear.addEventListener("click", function () {
+            drawingList.length = 0;
+            drawingListIdx = -1;
+            render();
+        }, false);
+        btn_redo.addEventListener("click", function () {
+            drawingListIdx = Math.min(drawingListIdx + 1, drawingList.length - 1);
+            render();
+        }, false);
+        btn_undo.addEventListener("click", function () {
+            drawingListIdx = Math.max(drawingListIdx - 1, -1);
+            render();
+        }, false);
     </script>
 </body>
 </html>
