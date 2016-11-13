@@ -30,18 +30,18 @@
             height:32px;
             margin-top:9px;
             cursor:pointer;
-            background-color:#5390c1;
+            background-color:#ccc;
             border-radius:50%;
-            opacity:0.6;
             border:4px solid #fff;
         }
 
         .btn:hover{
-            opacity:0.9;
+            background-color:#999;
         }
 
         .btn.selected{
-            border:4px solid #cadfef;
+            background-color:#555;
+            border:4px solid #ccc;
             opacity:1;
         }
 
@@ -84,6 +84,7 @@
             height:400px;
             background-color:#fff;
             margin:0 auto;
+            cursor:crosshair;
         }
 
     </style>
@@ -214,7 +215,7 @@
                 _mousedown = function (e) {
                     start = 1;
                     _drawing.startDrawing({
-                        strokeStyle: '#66ff66',
+                        strokeStyle: '#555',
                         lineWidth: 4,
                         lineCap: 'round'
                     });
