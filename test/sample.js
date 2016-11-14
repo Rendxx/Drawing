@@ -151,3 +151,12 @@ btn_undo.addEventListener("click", function () {
 }, false);
 
 btn_line.click();
+
+scene.width = container.offsetWidth;
+scene.height = container.offsetHeight;
+window.addEventListener('resize', function (e) {
+    scene.width = container.offsetWidth;
+    scene.height = container.offsetHeight;
+    console.log("1: " + container.offsetWidth + "  " + container.offsetHeight)
+    if (_drawing) _drawing.resize();
+});

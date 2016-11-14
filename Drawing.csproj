@@ -17,6 +17,7 @@
     <Content Include="gulpfile.js" />
     <Content Include="js\Drawing.js" />
     <Content Include="js\Drawing.min.js" />
+    <Content Include="preview.png" />
     <Content Include="src\design\btn0001.png" />
     <Content Include="src\design\btn0002.png" />
     <Content Include="src\design\btn0003.png" />

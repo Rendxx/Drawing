@@ -54,7 +54,7 @@ window.$$.Draw = window.$$.Draw || {};
 		this._canvas = document.createElement('canvas');
 		this._ctx = this._canvas.getContext('2d');
 		this.container.appendChild(this._canvas);
-		if (this.container.style.position != "relative" && this.container.style.position != "absolute") this.container.style.position = "relative";
+		//if (this.container.style.position != "relative" && this.container.style.position != "absolute") this.container.style.position = "relative";
 		this._canvas.style.position = 'absolute';
 		this._canvas.style.top = '0';
 		this._canvas.style.left = '0';
@@ -97,6 +97,7 @@ window.$$.Draw = window.$$.Draw || {};
 	    // resize the canvas
 	    this._canvas.width = this.container.offsetWidth;
 	    this._canvas.height = this.container.offsetHeight;
+	    console.log("2: " + this.container.offsetWidth + "  " + this.container.offsetHeight)
 	};
 
 	DRAW.Basic = Basic;
