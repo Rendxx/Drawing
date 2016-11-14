@@ -29,7 +29,7 @@
     <Content Include="src\js\Func.js" />
     <Content Include="test\line-bg.png" />
     <Content Include="test\line-bg2.gif" />
-    <Content Include="test\line-icon.png" />
+    <Content Include="test\sample.js" />
     <Content Include="test\test-line.html" />
     <Content Include="test\test-free.html" />
     <Content Include="test\sample.html" />
@@ -49,6 +49,7 @@
     <Content Include="src\js\Drawing.Basic.js" />
     <None Include="package.json" />
     <Content Include="src\design\btn.fla" />
+    <Content Include="test\sample.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
