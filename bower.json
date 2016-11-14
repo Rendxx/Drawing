@@ -5,8 +5,6 @@
     "js/Drawing.js"
   ],
   "dependencies": {
-    "jquery": "1.11.2",
-    "transform2D": "^0.4.1"
   },
   "moduleType": [
     "globals"

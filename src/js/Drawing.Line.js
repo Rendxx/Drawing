@@ -1,11 +1,20 @@
-﻿window.$$ = window.$$ || {};
+﻿/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
+window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
     "use strict";
 
-    var Line = function (container, para) {
-        DRAW.Basic.call(this, container, para);
+    var Line = function (container, opts) {
+        DRAW.Basic.call(this, container, opts);
         this.start = null;
         this.end = null;
     };

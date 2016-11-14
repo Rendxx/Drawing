@@ -1,12 +1,21 @@
-﻿window.$$ = window.$$ || {};
+﻿/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
+window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
 	"use strict";
 
-	var Basic = function (container, para) {
+	var Basic = function (container, opts) {
 		this.container = container;
-		this.para = para;
+		this.opts = opts || {};
 		this._canvas = document.createElement('canvas');
 		this._ctx = this._canvas.getContext('2d');
 		this.container.appendChild(this._canvas);
@@ -14,6 +23,7 @@ window.$$.Draw = window.$$.Draw || {};
 		this._canvas.style.position = 'absolute';
 		this._canvas.style.top = '0';
 		this._canvas.style.left = '0';
+		if (this.opts.hasOwnProperty("zIndex")) this._canvas.style.zIndex = this.opts.zIndex;
 		this.resize();
 	};
 	Basic.prototype = Object.create(null);

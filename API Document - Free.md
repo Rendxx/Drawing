@@ -1,7 +1,7 @@
-# API Document - Line
+# API Document - Free Drawing
 
-#### new $$.Draw.Line (container, opts) ```object (LINE instance)```
-Create a line object. 
+#### new $$.Draw.Free (container, opts) ```object (FREE DRAW instance)```
+Create a free drawing object. 
 
 - **container** ```string```  
 Dom node of the drawing container.
@@ -14,22 +14,16 @@ Dom node of the drawing container.
 
 <h1></h1>
 
-#### .draw (start, end, para)
-Draw a line from start to end.
-
-- **start** ```array[]```  
-  Start position [x, y].
-
-- **end** ```array[]```  
-  End position [x, y].
+#### .startDrawing (para)
+Start free drawing as mouse moves.
 
 - **para** ```object```  
-  
-  + **image** ```Image```   
-    Background image of the line.
-  
-  + **...**    
     Canvas context attributes.
+
+<h1></h1>
+
+#### .stopDrawing ()
+Stop drawing.
 
 <h1></h1>
 
@@ -48,3 +42,4 @@ Get the drawing image.
 #### .resize()
 Force resize the drawing object.
 <h1></h1>
+     

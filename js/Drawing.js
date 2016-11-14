@@ -33,15 +33,24 @@ window.$$.Func = window.$$.Func || {};
 
 })(window.$$.Func);
 
+/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
 window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
 	"use strict";
 
-	var Basic = function (container, para) {
+	var Basic = function (container, opts) {
 		this.container = container;
-		this.para = para;
+		this.opts = opts || {};
 		this._canvas = document.createElement('canvas');
 		this._ctx = this._canvas.getContext('2d');
 		this.container.appendChild(this._canvas);
@@ -49,6 +58,7 @@ window.$$.Draw = window.$$.Draw || {};
 		this._canvas.style.position = 'absolute';
 		this._canvas.style.top = '0';
 		this._canvas.style.left = '0';
+		if (this.opts.hasOwnProperty("zIndex")) this._canvas.style.zIndex = this.opts.zIndex;
 		this.resize();
 	};
 	Basic.prototype = Object.create(null);
@@ -92,14 +102,23 @@ window.$$.Draw = window.$$.Draw || {};
 	DRAW.Basic = Basic;
 })(window.$$.Draw);
 
+/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
 window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW) {
     "use strict";
 
-    var Line = function (container, para) {
-        DRAW.Basic.call(this, container, para);
+    var Line = function (container, opts) {
+        DRAW.Basic.call(this, container, opts);
         this.start = null;
         this.end = null;
     };
@@ -155,27 +174,37 @@ window.$$.Draw = window.$$.Draw || {};
     DRAW.Line = Line;
 })(window.$$.Draw);
 
+/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
 window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW, FUNC) {
     "use strict";
 
-    var FreeDraw = function (container, para) {
+    var FreeDraw = function (container, opts) {
+        DRAW.Basic.call(this, container, opts);
         this._canvas2 = document.createElement('canvas');
         this._canvas2.style.position = 'absolute';
         this._canvas2.style.top = '0';
         this._canvas2.style.left = '0';
-        this._canvas2.style.zIndex = '100';
+        this._canvas2.style.zIndex = (this._canvas.style.zIndex || 0)+1;
         this._ctx2 = this._canvas2.getContext('2d');
         container.appendChild(this._canvas2);
 
-        DRAW.Basic.call(this, container, para);
         this._controlPos = null;
         this._lastPos = null;
         this._isDrawing = false;
 
         this._setupBinding();
+        this.resize();
     };
     FreeDraw.prototype = Object.create(DRAW.Basic.prototype);
     FreeDraw.prototype.constructor = FreeDraw;
@@ -252,8 +281,10 @@ window.$$.Draw = window.$$.Draw || {};
 
     FreeDraw.prototype.resize = function () {
         DRAW.Basic.prototype.resize.call(this);
-        this._canvas2.width = this.container.offsetWidth;
-        this._canvas2.height = this.container.offsetHeight;
+        if (this._canvas2 != null) {
+            this._canvas2.width = this.container.offsetWidth;
+            this._canvas2.height = this.container.offsetHeight;
+        }
     };
 
     DRAW.FreeDraw = FreeDraw;

@@ -24,7 +24,6 @@
     <Content Include="src\design\btn0005.png" />
     <Content Include="src\design\btn0006.png" />
     <Content Include="src\js\Drawing.Free.js" />
-    <Content Include="src\js\Drawing.js" />
     <Content Include="src\js\Drawing.Line.js" />
     <Content Include="src\js\Func.js" />
     <Content Include="test\line-bg.png" />
@@ -34,11 +33,9 @@
     <Content Include="test\test-free.html" />
     <Content Include="test\sample.html" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="lib\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="API Document - Shape.md" />
+    <Content Include="API Document - Free.md" />
     <Content Include="API Document - Line.md" />
     <None Include="bower.json" />
     <None Include="bundle.json" />

@@ -1,24 +1,34 @@
-﻿window.$$ = window.$$ || {};
+﻿/************************************************ 
+Drawing Library
+Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
+
+License: MIT (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.4.0
+Update: 2016-11-14
+************************************************/
+
+window.$$ = window.$$ || {};
 window.$$.Draw = window.$$.Draw || {};
 
 (function (DRAW, FUNC) {
     "use strict";
 
-    var FreeDraw = function (container, para) {
+    var FreeDraw = function (container, opts) {
+        DRAW.Basic.call(this, container, opts);
         this._canvas2 = document.createElement('canvas');
         this._canvas2.style.position = 'absolute';
         this._canvas2.style.top = '0';
         this._canvas2.style.left = '0';
-        this._canvas2.style.zIndex = '100';
+        this._canvas2.style.zIndex = (this._canvas.style.zIndex || 0)+1;
         this._ctx2 = this._canvas2.getContext('2d');
         container.appendChild(this._canvas2);
 
-        DRAW.Basic.call(this, container, para);
         this._controlPos = null;
         this._lastPos = null;
         this._isDrawing = false;
 
         this._setupBinding();
+        this.resize();
     };
     FreeDraw.prototype = Object.create(DRAW.Basic.prototype);
     FreeDraw.prototype.constructor = FreeDraw;
@@ -95,8 +105,10 @@ window.$$.Draw = window.$$.Draw || {};
 
     FreeDraw.prototype.resize = function () {
         DRAW.Basic.prototype.resize.call(this);
-        this._canvas2.width = this.container.offsetWidth;
-        this._canvas2.height = this.container.offsetHeight;
+        if (this._canvas2 != null) {
+            this._canvas2.width = this.container.offsetWidth;
+            this._canvas2.height = this.container.offsetHeight;
+        }
     };
 
     DRAW.FreeDraw = FreeDraw;
