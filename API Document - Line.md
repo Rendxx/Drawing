@@ -48,3 +48,6 @@ Get the drawing image.
 #### .resize()
 Force resize the drawing object.
 <h1></h1>
+
+#### .destroy()
+Destroy the element and release all memory.
