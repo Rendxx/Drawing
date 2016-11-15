@@ -3,8 +3,8 @@ Drawing Library
 Copyright (c) 2014-2016 Dongxu Ren  http://www.rendxx.com/
 
 License: MIT (http://www.opensource.org/licenses/mit-license.php)
-Version: 0.4.0
-Update: 2016-11-14
+Version: 0.4.3
+Update: 2016-11-15
 ************************************************/
 
 window.$$ = window.$$ || {};
