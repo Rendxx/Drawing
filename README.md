@@ -5,7 +5,7 @@ For this version, line is the only available shape.
 ![preview](https://raw.githubusercontent.com/Rendxx/Drawing/master/preview.png "Preview")
 
 *Sample: [http://www.rendxx.com/Lib/Sample/1](http://www.rendxx.com/Lib/Sample/1 "Sample")*  
-*Download: [Drawing v0.4.1](https://github.com/Rendxx/Drawing/releases/tag/0.4.1 "Download")*
+*Download: [Drawing v0.4.2](https://github.com/Rendxx/Drawing/releases/tag/0.4.2 "Download")*
 
 ## Install
 Download the package from bower

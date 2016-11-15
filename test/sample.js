@@ -42,8 +42,10 @@ var selectDrawing = function (btn) {
 
 var render = function () {
     ctx.clearRect(0, 0, scene.width, scene.height);
+    //console.log(drawingList.length, drawingListIdx, "----------------------");
     for (var i = 0; i <= drawingListIdx; i++) {
         ctx.drawImage(drawingList[i], 0, 0);
+        //console.log(drawingList[i]);
     }
 };
 
@@ -157,6 +159,7 @@ scene.height = container.offsetHeight;
 window.addEventListener('resize', function (e) {
     scene.width = container.offsetWidth;
     scene.height = container.offsetHeight;
-    console.log("1: " + container.offsetWidth + "  " + container.offsetHeight)
+    //console.log("1: " + container.offsetWidth + "  " + container.offsetHeight)
     if (_drawing) _drawing.resize();
+    render();
 });

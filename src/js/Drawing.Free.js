@@ -111,5 +111,12 @@ window.$$.Draw = window.$$.Draw || {};
         }
     };
 
+    FreeDraw.prototype.destroy = function () {
+        DRAW.Basic.prototype.destroy.call(this);
+        this._canvas2.parentNode.removeChild(this._canvas2);
+        this._canvas2 = null;
+        this._ctx2 = null;
+    };
+
     DRAW.FreeDraw = FreeDraw;
 })(window.$$.Draw, window.$$.Func);

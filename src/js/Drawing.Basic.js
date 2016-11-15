@@ -54,6 +54,7 @@ window.$$.Draw = window.$$.Draw || {};
 
 	Basic.prototype.destroy = function () {
 	    // destroy the element and release all memory
+	    this._canvas.parentNode.removeChild(this._canvas);
 	    this._canvas = null;
 	    this._ctx = null;
 	};
@@ -62,7 +63,6 @@ window.$$.Draw = window.$$.Draw || {};
 	    // resize the canvas
 	    this._canvas.width = this.container.offsetWidth;
 	    this._canvas.height = this.container.offsetHeight;
-	    console.log("2: " + this.container.offsetWidth + "  " + this.container.offsetHeight)
 	};
 
 	DRAW.Basic = Basic;
